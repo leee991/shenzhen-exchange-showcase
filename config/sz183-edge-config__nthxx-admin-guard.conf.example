@@ -1,0 +1,5 @@
+# Suppress only the browser verification script on c.nthxx.com admin responses.
+# The vhost uses this variable solely in the admin PHP handler and its static files.
+map $host $nthxx_admin_guard_head {
+    default '<script src="/__guard/assets/session.js" defer></script></head>';
+}

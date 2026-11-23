@@ -1,0 +1,25 @@
+[Unit]
+Description=Pull and verify latest private NTHXX project backup (archive only)
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=22h
+StartLimitBurst=3
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+UMask=0077
+ExecStart=/usr/bin/python3 -B /usr/local/lib/nthxx-daily-backup/target-backup.py
+TimeoutStartSec=3h
+TimeoutStopSec=30s
+KillMode=control-group
+Restart=on-failure
+RestartSec=10min
+NoNewPrivileges=true
+PrivateTmp=true
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+# Keep /root and /srv on their original mounts so private seed hardlinks can work.
+# The script enforces root-owned 0700 archive/state roots and never executes archives.

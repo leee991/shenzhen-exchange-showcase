@@ -1,0 +1,7 @@
+[Unit]
+Description=Observe renewed certificate for isolated HK admin only
+After=nthxx-hk-admin-web-20261028.service
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/nthxx-admin-live-20261028/etc/hk-cert-watch.py
+UMask=0077

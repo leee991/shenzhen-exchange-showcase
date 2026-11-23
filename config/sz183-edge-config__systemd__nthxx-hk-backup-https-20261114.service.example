@@ -1,0 +1,13 @@
+[Unit]
+Description=Authenticated HTTPS backup upgrade backend
+After=network.target nthxx-hk-backup-sshd-20261114.service
+Requires=nthxx-hk-backup-sshd-20261114.service
+[Service]
+ExecStart=/usr/bin/python3 -I -B /usr/local/lib/nthxx-hk-backup-export/https_bridge.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+[Install]
+WantedBy=multi-user.target

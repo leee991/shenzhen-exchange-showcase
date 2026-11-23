@@ -1,0 +1,8 @@
+[Unit]
+Description=HK primary apexa-c2c-display-count
+After=nthxx-hk-primary-20261114.service
+ConditionPathExists=/opt/nthxx-production-20261114/PRIMARY_ACTIVE
+[Service]
+Type=oneshot
+ExecStart=/opt/nthxx-production-20261114/helpers-rootfs/opt/apexa1-c2c-display-count/run.sh
+TimeoutStartSec=120

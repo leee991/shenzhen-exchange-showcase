@@ -1,0 +1,21 @@
+[Unit]
+Description=Loopback-only private HK to CN backup transport
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+UMask=0077
+ExecStart=/usr/bin/ssh -NT -o "ProxyCommand=/usr/bin/python3 -I -B /usr/local/lib/nthxx-hk-backup-export/tcp_connect.py" -p 22422 -i /etc/nthxx-hk-backup-tunnel-20261114/id_ed25519 -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=/etc/nthxx-hk-backup-tunnel-20261114/known_hosts -o ExitOnForwardFailure=yes -o ServerAliveInterval=20 -o ServerAliveCountMax=3 -R 127.0.0.1:28414:127.0.0.1:5648 nthxx-hk-tunnel@10.0.0.10
+Restart=always
+RestartSec=15
+Nice=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

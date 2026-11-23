@@ -1,0 +1,8 @@
+[Unit]
+Description=HK primary apexa-market-volume
+After=nthxx-hk-primary-20261114.service
+ConditionPathExists=/opt/nthxx-production-20261114/PRIMARY_ACTIVE
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/nthxx-production-20261114/helpers-rootfs/opt/apexa1-market-data/refresh_volume.py
+TimeoutStartSec=120

@@ -1,0 +1,11 @@
+[Unit]
+Description=Independent mount propagation root for formal admin storage
+After=local-fs.target
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/mount --bind /opt/nthxx-admin-live-20261028/shared /opt/nthxx-admin-live-20261028/shared
+ExecStart=/usr/bin/mount --make-rshared /opt/nthxx-admin-live-20261028/shared
+ExecStop=/usr/bin/umount /opt/nthxx-admin-live-20261028/shared
+[Install]
+WantedBy=multi-user.target

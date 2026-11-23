@@ -1,0 +1,5 @@
+# Browser-private caching for versioned static assets only.
+map $uri $nthxx_asset_cache_control {
+    default "private, no-cache";
+    "~*\\.[0-9a-f]{8,}(?:\\.[a-z0-9_-]+)?\\.(?:js|css|woff2?|ttf|svg|png|jpe?g|gif|webp|ico)$" "private, max-age=604800, immutable";
+}

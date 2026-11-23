@@ -1,0 +1,14 @@
+[Unit]
+Description=Formal CN admin extra through confined SFTP (20261028)
+Requires=nthxx-hk-admin-link-20261028.service nthxx-hk-admin-shared-20261028.service
+After=nthxx-hk-admin-link-20261028.service nthxx-hk-admin-shared-20261028.service
+[Service]
+Type=exec
+ExecStartPre=/usr/bin/python3 /opt/nthxx-admin-live-20261028/stage/hk-wait.py
+ExecStart=/usr/bin/sshfs -f -p 12549 hkadminfiles@127.0.0.1:/extra /opt/nthxx-admin-live-20261028/shared/extra -o IdentityFile=/opt/nthxx-admin-live-20261028/keys/storage,IdentitiesOnly=yes,BatchMode=yes,StrictHostKeyChecking=yes,UserKnownHostsFile=/opt/nthxx-admin-live-20261028/etc/storage-known-hosts,allow_other,default_permissions,reconnect,ServerAliveInterval=10,ServerAliveCountMax=2,ConnectTimeout=10,dir_cache=yes,dcache_timeout=1,dcache_stat_timeout=1,dcache_link_timeout=1,dcache_dir_timeout=1,attr_timeout=1,entry_timeout=1,negative_timeout=0,auto_cache,ac_attr_timeout=1,ro
+ExecStop=/usr/bin/fusermount3 -u /opt/nthxx-admin-live-20261028/shared/extra
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=25
+[Install]
+WantedBy=multi-user.target

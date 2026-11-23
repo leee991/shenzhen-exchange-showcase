@@ -1,0 +1,13 @@
+[Unit]
+Description=Restricted private link to the formal CN admin data (20261028)
+Wants=network-online.target
+After=network-online.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/ssh -N -T -4 -p 22422 -i /opt/nthxx-admin-live-20261028/keys/link -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=/opt/nthxx-admin-live-20261028/etc/cn-known-hosts -o ExitOnForwardFailure=yes -o ServerAliveInterval=10 -o ServerAliveCountMax=2 -o ConnectTimeout=10 -L 127.0.0.1:13316:127.0.0.1:3306 -L 127.0.0.1:16316:127.0.0.1:6379 -L 127.0.0.1:12549:127.0.0.1:22549 -L 127.0.0.1:12550:127.0.0.1:22550 hkadminlink@10.0.0.10
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+[Install]
+WantedBy=multi-user.target

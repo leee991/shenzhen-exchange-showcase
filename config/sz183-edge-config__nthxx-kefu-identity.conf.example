@@ -1,0 +1,21 @@
+server {
+    listen 127.0.0.1:8793;
+    server_name localhost;
+    access_log off;
+    location = /identity {
+        limit_except GET { deny all; }
+        include /etc/nginx/fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME /www/wwwroot/apexa-backend/ADMIN/public/index.php;
+        fastcgi_param SCRIPT_NAME /index.php;
+        fastcgi_param QUERY_STRING s=/api/kefu_identity/index;
+        fastcgi_param HTTP_TOKEN $http_token;
+        fastcgi_param HTTP_HOST 10.0.0.x;
+        fastcgi_pass 127.0.0.1:9001;
+        fastcgi_connect_timeout 3s;
+        fastcgi_read_timeout 3s;
+        fastcgi_hide_header Access-Control-Allow-Origin;
+        fastcgi_hide_header Access-Control-Allow-Credentials;
+        add_header Cache-Control "no-store" always;
+    }
+    location / { return 404; }
+}

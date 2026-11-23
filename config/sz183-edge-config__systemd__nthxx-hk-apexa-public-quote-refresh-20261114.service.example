@@ -1,0 +1,8 @@
+[Unit]
+Description=HK primary apexa-public-quote-refresh
+After=nthxx-hk-primary-20261114.service
+ConditionPathExists=/opt/nthxx-production-20261114/PRIMARY_ACTIVE
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker exec --user www-data nthxx-restore-prod-20261114-php php /www/wwwroot/apexa-backend/ADMIN/scripts/refresh-public-quotes.php
+TimeoutStartSec=120

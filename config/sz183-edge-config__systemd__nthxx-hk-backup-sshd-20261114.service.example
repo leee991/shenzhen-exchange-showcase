@@ -1,0 +1,9 @@
+[Unit]
+Description=Restricted loopback-only SSH for backups
+After=network.target
+[Service]
+ExecStart=/usr/sbin/sshd -D -e -f /etc/nthxx-hk-https-backup-20261114/sshd_config
+Restart=on-failure
+RestartSec=5
+[Install]
+WantedBy=multi-user.target

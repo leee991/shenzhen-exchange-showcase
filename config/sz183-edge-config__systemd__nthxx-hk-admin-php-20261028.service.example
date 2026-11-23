@@ -1,0 +1,13 @@
+[Unit]
+Description=Independent formal HK admin PHP runtime (20261028)
+Requires=docker.service nthxx-hk-admin-uploads-20261028.service nthxx-hk-admin-extra-20261028.service
+After=docker.service nthxx-hk-admin-uploads-20261028.service nthxx-hk-admin-extra-20261028.service
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker start -a nthxx-hk-admin-live-20261028
+ExecStop=/usr/bin/docker stop --time 20 nthxx-hk-admin-live-20261028
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+[Install]
+WantedBy=multi-user.target

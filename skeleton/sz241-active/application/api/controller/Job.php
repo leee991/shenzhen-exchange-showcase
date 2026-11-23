@@ -1,0 +1,25 @@
+<?php
+/**
+ * 接口定义 — sz241-active/application/api/controller/Job.php
+ * 仅保留控制器与方法签名。
+ */
+
+
+
+namespace app\api\controller;
+
+
+use app\common\controller\Api;
+use think\Db;
+use think\Config;
+use think\Queue;
+
+class Job extends Api
+{
+    public function dismiss()
+    {
+        // 内部业务实现略
+        throw new \RuntimeException('not implemented');
+    }
+
+}

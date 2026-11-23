@@ -1,0 +1,7 @@
+# Precompressed public assets; gzip remains the fallback.
+
+    # XT-GUARD-BEGIN change-1
+    # XT-GUARD-ORIGINAL YnJvdGxpX3N0YXRpYyBvbjs=
+    brotli_static off;
+    # XT-GUARD-END change-1
+

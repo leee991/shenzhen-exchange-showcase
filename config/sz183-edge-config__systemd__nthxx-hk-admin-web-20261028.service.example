@@ -1,0 +1,15 @@
+[Unit]
+Description=Independent HTTPS formal HK admin entry on 8443 (20261028)
+Requires=nthxx-hk-admin-php-20261028.service
+After=network.target nthxx-hk-admin-php-20261028.service
+[Service]
+Type=forking
+PIDFile=/opt/nthxx-admin-live-20261028/state/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t -c /opt/nthxx-admin-live-20261028/etc/nginx.conf -p /opt/nthxx-admin-live-20261028/
+ExecStart=/usr/sbin/nginx -c /opt/nthxx-admin-live-20261028/etc/nginx.conf -p /opt/nthxx-admin-live-20261028/
+ExecReload=/usr/sbin/nginx -t -c /opt/nthxx-admin-live-20261028/etc/nginx.conf -p /opt/nthxx-admin-live-20261028/
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill -QUIT $MAINPID
+TimeoutStopSec=30
+[Install]
+WantedBy=multi-user.target
