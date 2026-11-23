@@ -19,7 +19,10 @@ import urllib.parse
 import urllib.request
 
 class RequestError(Exception):
-    def __init__(self, status, code, message):
+    def __init__(self, status, code, message, reason='request_error', **metadata):
+        # 内部业务实现略
+        raise NotImplementedError('not implemented')
+    def payload(self):
         # 内部业务实现略
         raise NotImplementedError('not implemented')
 
@@ -35,7 +38,7 @@ def canonical(path, query):
     # 内部业务实现略
     raise NotImplementedError('not implemented')
 
-def fetch_public(path, args):
+def fetch_public(path, args, validator=None):
     # 内部业务实现略
     raise NotImplementedError('not implemented')
 
@@ -49,11 +52,37 @@ class Cache:
     def _refresh_bg(self, key, gate, loader):
         # 内部业务实现略
         raise NotImplementedError('not implemented')
-    def get(self, key, ttl, loader):
+    def _cached_value(self, row, max_age, validator):
+        # 内部业务实现略
+        raise NotImplementedError('not implemented')
+    def _unavailable(self, row, validator, message, reason):
+        # 内部业务实现略
+        raise NotImplementedError('not implemented')
+    def get(self, key, ttl, loader, validator=None):
         # 内部业务实现略
         raise NotImplementedError('not implemented')
 
 def tickers():
+    # 内部业务实现略
+    raise NotImplementedError('not implemented')
+
+def current_tickers(rows):
+    # 内部业务实现略
+    raise NotImplementedError('not implemented')
+
+def kline_max_age(args):
+    # 内部业务实现略
+    raise NotImplementedError('not implemented')
+
+def validate_klines(result, args):
+    # 内部业务实现略
+    raise NotImplementedError('not implemented')
+
+def known_kline_status(wanted):
+    # 内部业务实现略
+    raise NotImplementedError('not implemented')
+
+def ticker_availability(args):
     # 内部业务实现略
     raise NotImplementedError('not implemented')
 
