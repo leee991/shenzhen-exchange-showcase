@@ -1,4 +1,4 @@
-# OneEx / Apexa1 交易平台 — Module Directory Tree (Synced 2026-11-25)
+# OneEx / Apexa1 交易平台 — Module Directory Tree (Synced 2026-11-26)
 
 .
   sz183-edge-config/
@@ -116,5 +116,5 @@
       deploy.sh
       finalize_crawlers.py
 
-Total clean source/config files: 1445
-Language / Extension breakdown: .php: 824, .html: 354, .js: 90, .vue: 38, .stub: 33, .service: 24, .css: 16, .timer: 12, .json: 9, .conf: 8, .md: 8, .py: 6
+Total clean source/config files: 1443
+Language / Extension breakdown: .php: 822, .html: 354, .js: 90, .vue: 38, .stub: 33, .service: 24, .css: 16, .timer: 12, .json: 9, .conf: 8, .md: 8, .py: 6
